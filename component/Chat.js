@@ -43,7 +43,7 @@ if (typeof window !== "undefined") {
   // function to verify user token
   const checkUserToken = async () => {
     try {
-      const serverResponse = await axios.get("http://localhost:5000/api/me", {
+      const serverResponse = await axios.get("https://omegachat-woad.vercel.app//api/me", {
         headers: { Authorization: `Bearer ${userToken}` }
       });
       
@@ -63,7 +63,7 @@ if (typeof window !== "undefined") {
   // function to setup chat connection
   const setupChatConnection = () => {
     // create socket connection
-    const newSocketConnection = io("http://localhost:5000", {
+    const newSocketConnection = io("https://omegachat-woad.vercel.app/", {
       auth: { token: userToken },
     });
 
@@ -126,7 +126,7 @@ if (typeof window !== "undefined") {
 
       // create each dummy user
       const createUserPromises = testUsers.map(user => 
-        axios.post("http://localhost:5000/api/signup", user)
+        axios.post("https://omegachat-woad.vercel.app//api/signup", user)
           .catch(error => {
             if (error.response?.status === 400 && 
                 error.response?.data?.message?.includes("already exists")) {
@@ -148,7 +148,7 @@ if (typeof window !== "undefined") {
   // function to get all users from server
   const getAllUsers = async () => {
     try {
-      const response = await axios.get("http://localhost:5000/api/users", {
+      const response = await axios.get("https://omegachat-woad.vercel.app//api/users", {
         headers: { Authorization: `Bearer ${userToken}` },
       });
       // filter out current user from the list
@@ -164,7 +164,7 @@ if (typeof window !== "undefined") {
   const getMessagesWithUser = async (otherUserEmail) => {
     try {
       const response = await axios.get(
-        `http://localhost:5000/api/messages/${otherUserEmail}`,
+        `https://omegachat-woad.vercel.app//api/messages/${otherUserEmail}`,
         {
           headers: { Authorization: `Bearer ${userToken}` },
         }
@@ -250,7 +250,7 @@ if (typeof window !== "undefined") {
   const renderFileInMessage = (message) => {
     if (!message.fileUrl) return null;
 
-    const fileUrl = `http://localhost:5000${message.fileUrl}`;
+    const fileUrl = `https://omegachat-woad.vercel.app/${message.fileUrl}`;
 
     // show different content based on file type
     if (message.fileType === 'image') {
@@ -324,7 +324,7 @@ if (typeof window !== "undefined") {
 
       // send message to server
       const response = await axios.post(
-        "http://localhost:5000/api/messages",
+        "https://omegachat-woad.vercel.app//api/messages",
         messageData,
         {
           headers: { Authorization: `Bearer ${userToken}` },

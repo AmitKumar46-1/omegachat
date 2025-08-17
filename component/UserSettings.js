@@ -64,7 +64,7 @@ const UserSettings = () => {
   const loadUserStats = async () => {
     try {
       const token = localStorage.getItem('token');
-      const response = await axios.get('http://localhost:5000/api/stats', {
+      const response = await axios.get('https://omegachat-woad.vercel.app//api/stats', {
         headers: { Authorization: `Bearer ${token}` }
       });
       
@@ -82,7 +82,7 @@ const UserSettings = () => {
     
     try {
       const token = localStorage.getItem('token');
-      await axios.put('http://localhost:5000/api/user/profile', profile, {
+      await axios.put('https://omegachat-woad.vercel.app//api/user/profile', profile, {
         headers: { Authorization: `Bearer ${token}` }
       });
       
@@ -115,7 +115,7 @@ const UserSettings = () => {
     
     try {
       const token = localStorage.getItem('token');
-      await axios.put('http://localhost:5000/api/user/password', {
+      await axios.put('https://omegachat-woad.vercel.app//api/user/password', {
         currentPassword: passwords.currentPassword,
         newPassword: passwords.newPassword
       }, {
@@ -147,7 +147,7 @@ const UserSettings = () => {
     
     try {
       const token = localStorage.getItem('token');
-      await axios.delete('http://localhost:5000/api/user/account', {
+      await axios.delete('https://omegachat-woad.vercel.app//api/user/account', {
         data: { password: deletePassword },
         headers: { Authorization: `Bearer ${token}` }
       });
@@ -176,7 +176,7 @@ const UserSettings = () => {
 
     try {
       const token = localStorage.getItem('token');
-      const response = await axios.get(`http://localhost:5000/api/messages/search?query=${searchQuery}`, {
+      const response = await axios.get(`https://omegachat-woad.vercel.app//api/messages/search?query=${searchQuery}`, {
         headers: { Authorization: `Bearer ${token}` }
       });
       
