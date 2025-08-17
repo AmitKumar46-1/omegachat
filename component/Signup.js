@@ -34,7 +34,7 @@ export default function Signup() {
     
     try {
       // send user data to backend
-      const serverResponse = await axios.post(process.env.NEXT_PUBLIC_API_URL + "api/signup", userForm);
+      const serverResponse = await axios.post(process.env.NEXT_PUBLIC_API_URL + "/api/signup", userForm);
       
       // if backend returns token, save it and login user
       if (serverResponse.data.token) {

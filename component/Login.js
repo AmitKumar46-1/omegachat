@@ -7,26 +7,28 @@ export default function Login() {
   const [form, setForm] = useState({ email: "", password: "" });
   const [isLoading, setIsLoading] = useState(false);
   const router = useRouter();
-
+  
   const handleChange = (e) => setForm({ ...form, [e.target.name]: e.target.value });
-
+  
   const handleSubmit = async (e) => {
     e.preventDefault();
     setIsLoading(true);
-    
+   
     try {
-      const res = await axios.post(process.env.NEXT_PUBLIC_API_URL + "api/login", form);
-
+      // Fixed: Added proper slash before /api/login
+      const res = await axios.post(process.env.NEXT_PUBLIC_API_URL + "/api/login", form);
+      
       // Save token in localStorage
       localStorage.setItem("token", res.data.token);
-
+      
       // Show success message
       alert("Login successful! Welcome back.");
-      
+     
       // Force a page refresh to update navbar state, then redirect
       window.location.href = "/"; // This will refresh the entire page and update navbar
-      
+     
     } catch (err) {
+      console.error("Login error:", err);
       alert(err.response?.data?.message || "Login failed");
     } finally {
       setIsLoading(false);
@@ -37,7 +39,6 @@ export default function Login() {
     <div className="min-h-screen bg-gray-900 flex items-center justify-center p-4">
       <div className="max-w-md w-full bg-gray-800 rounded-lg shadow-xl p-8 border border-purple-500">
         <h2 className="text-3xl font-bold text-center text-purple-400 mb-6">Welcome Back</h2>
-
         <form className="space-y-5" onSubmit={handleSubmit}>
           <div>
             <label className="block text-sm text-sky-300 mb-2">Email</label>
@@ -52,7 +53,6 @@ export default function Login() {
               disabled={isLoading}
             />
           </div>
-
           <div>
             <label className="block text-sm text-sky-300 mb-2">Password</label>
             <input
@@ -66,7 +66,6 @@ export default function Login() {
               disabled={isLoading}
             />
           </div>
-
           <button
             type="submit"
             disabled={isLoading}
@@ -75,7 +74,6 @@ export default function Login() {
             {isLoading ? "Logging in..." : "Login"}
           </button>
         </form>
-
         <div className="mt-6 text-center">
           <p className="text-gray-400">
             Don't have an account?{" "}

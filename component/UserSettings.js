@@ -44,7 +44,7 @@ const UserSettings = () => {
   const loadUserProfile = async () => {
     try {
       const token = localStorage.getItem('token');
-      const response = await axios.get(process.env.NEXT_PUBLIC_API_URL + 'api/me', {
+      const response = await axios.get(process.env.NEXT_PUBLIC_API_URL + '/api/me', {
         headers: { Authorization: `Bearer ${token}` }
       });
       
@@ -64,7 +64,8 @@ const UserSettings = () => {
   const loadUserStats = async () => {
     try {
       const token = localStorage.getItem('token');
-      const response = await axios.get('https://omegachat-woad.vercel.app//api/stats', {
+      // Fixed: Use backend URL and proper slash
+      const response = await axios.get(process.env.NEXT_PUBLIC_API_URL + '/api/stats', {
         headers: { Authorization: `Bearer ${token}` }
       });
       
@@ -82,7 +83,8 @@ const UserSettings = () => {
     
     try {
       const token = localStorage.getItem('token');
-      await axios.put('https://omegachat-woad.vercel.app//api/user/profile', profile, {
+      // Fixed: Use backend URL and proper slash
+      await axios.put(process.env.NEXT_PUBLIC_API_URL + '/api/user/profile', profile, {
         headers: { Authorization: `Bearer ${token}` }
       });
       
@@ -115,7 +117,8 @@ const UserSettings = () => {
     
     try {
       const token = localStorage.getItem('token');
-      await axios.put('https://omegachat-woad.vercel.app//api/user/password', {
+      // Fixed: Use backend URL and proper slash
+      await axios.put(process.env.NEXT_PUBLIC_API_URL + '/api/user/password', {
         currentPassword: passwords.currentPassword,
         newPassword: passwords.newPassword
       }, {
@@ -147,7 +150,8 @@ const UserSettings = () => {
     
     try {
       const token = localStorage.getItem('token');
-      await axios.delete('https://omegachat-woad.vercel.app//api/user/account', {
+      // Fixed: Use backend URL and proper slash
+      await axios.delete(process.env.NEXT_PUBLIC_API_URL + '/api/user/account', {
         data: { password: deletePassword },
         headers: { Authorization: `Bearer ${token}` }
       });
@@ -176,7 +180,8 @@ const UserSettings = () => {
 
     try {
       const token = localStorage.getItem('token');
-      const response = await axios.get(`https://omegachat-woad.vercel.app//api/messages/search?query=${searchQuery}`, {
+      // Fixed: Use backend URL and proper slash
+      const response = await axios.get(`${process.env.NEXT_PUBLIC_API_URL}/api/messages/search?query=${searchQuery}`, {
         headers: { Authorization: `Bearer ${token}` }
       });
       
@@ -476,8 +481,8 @@ const UserSettings = () => {
 
                 {searchResults.length > 0 && (
                   <div className="space-y-4 max-h-96 overflow-y-auto">
-                    {searchResults.map((msg) => (
-                      <div key={msg._id} className="bg-gray-800 p-6 rounded-xl border border-purple-500/20">
+                    {searchResults.map((msg, index) => (
+                      <div key={msg._id || index} className="bg-gray-800 p-6 rounded-xl border border-purple-500/20">
                         <div className="flex justify-between items-start mb-2">
                           <div className="text-purple-300 font-semibold">
                             {msg.senderEmail === profile.email ? 'You' : msg.senderId?.name || msg.senderEmail}
@@ -492,6 +497,14 @@ const UserSettings = () => {
                         )}
                       </div>
                     ))}
+                  </div>
+                )}
+
+                {searchQuery && searchResults.length === 0 && (
+                  <div className="text-center text-gray-400 py-8">
+                    <div className="text-4xl mb-4">🔍</div>
+                    <div className="text-lg">No messages found</div>
+                    <div className="text-sm mt-2">Try a different search term</div>
                   </div>
                 )}
               </div>

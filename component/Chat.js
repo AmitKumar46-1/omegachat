@@ -43,7 +43,7 @@ if (typeof window !== "undefined") {
   // function to verify user token
   const checkUserToken = async () => {
     try {
-      const serverResponse = await axios.get("https://omegachat-woad.vercel.app//api/me", {
+      const serverResponse = await axios.get(process.env.NEXT_PUBLIC_API_URL + "/api/me", {
         headers: { Authorization: `Bearer ${userToken}` }
       });
       
@@ -63,7 +63,7 @@ if (typeof window !== "undefined") {
   // function to setup chat connection
   const setupChatConnection = () => {
     // create socket connection
-    const newSocketConnection = io("https://omegachat-woad.vercel.app/", {
+    const newSocketConnection = io(process.env.NEXT_PUBLIC_API_URL, {
       auth: { token: userToken },
     });
 
@@ -126,7 +126,7 @@ if (typeof window !== "undefined") {
 
       // create each dummy user
       const createUserPromises = testUsers.map(user => 
-        axios.post("https://omegachat-woad.vercel.app//api/signup", user)
+        axios.post(process.env.NEXT_PUBLIC_API_URL + "/api/signup", user)
           .catch(error => {
             if (error.response?.status === 400 && 
                 error.response?.data?.message?.includes("already exists")) {
@@ -148,7 +148,7 @@ if (typeof window !== "undefined") {
   // function to get all users from server
   const getAllUsers = async () => {
     try {
-      const response = await axios.get("https://omegachat-woad.vercel.app//api/users", {
+      const response = await axios.get(process.env.NEXT_PUBLIC_API_URL + "/api/users", {
         headers: { Authorization: `Bearer ${userToken}` },
       });
       // filter out current user from the list
@@ -164,7 +164,7 @@ if (typeof window !== "undefined") {
   const getMessagesWithUser = async (otherUserEmail) => {
     try {
       const response = await axios.get(
-        `https://omegachat-woad.vercel.app//api/messages/${otherUserEmail}`,
+        `${process.env.NEXT_PUBLIC_API_URL}/api/messages/${otherUserEmail}`,
         {
           headers: { Authorization: `Bearer ${userToken}` },
         }
@@ -218,7 +218,7 @@ if (typeof window !== "undefined") {
       formData.append('file', file);
 
       // send file to server
-      const response = await axios.post(process.env.NEXT_PUBLIC_API_URL + "api/upload", formData, {
+      const response = await axios.post(process.env.NEXT_PUBLIC_API_URL + "/api/upload", formData, {
         headers: {
           'Authorization': `Bearer ${userToken}`,
           'Content-Type': 'multipart/form-data'
@@ -250,7 +250,7 @@ if (typeof window !== "undefined") {
   const renderFileInMessage = (message) => {
     if (!message.fileUrl) return null;
 
-    const fileUrl = `https://omegachat-woad.vercel.app/${message.fileUrl}`;
+    const fileUrl = `${process.env.NEXT_PUBLIC_API_URL}/${message.fileUrl}`;
 
     // show different content based on file type
     if (message.fileType === 'image') {
@@ -324,7 +324,7 @@ if (typeof window !== "undefined") {
 
       // send message to server
       const response = await axios.post(
-        "https://omegachat-woad.vercel.app//api/messages",
+        process.env.NEXT_PUBLIC_API_URL + "/api/messages",
         messageData,
         {
           headers: { Authorization: `Bearer ${userToken}` },
