@@ -23,7 +23,10 @@ const Chat = () => {
   const [uploadingFile, setUploadingFile] = useState(false);
 
   const messagesEndRef = useRef(null);
-  const userToken = localStorage.getItem("token");
+let userToken = null;
+if (typeof window !== "undefined") {
+  userToken = localStorage.getItem("token");
+}
 
   // check if user is logged in when component loads
   useEffect(() => {
