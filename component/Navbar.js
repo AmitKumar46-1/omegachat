@@ -330,7 +330,7 @@ export default function Navbar() {
                   <Link 
                     href="/login" 
                     onClick={() => setShowMobileMenu(false)}
-                    className="block text-center text-purple-300 hover:text-purple-100 font-medium px-4 py-2 border border-purple-500 rounded-lg hover:bg-purple-500 hover:text-white transition-all duration-200"
+                    className="block text-center text-purple-300  font-medium px-4 py-2 border border-purple-500 rounded-lg hover:bg-purple-500 hover:text-white transition-all duration-200"
                   >
                     🔑 Login
                   </Link>
