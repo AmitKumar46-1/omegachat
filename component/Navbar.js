@@ -122,7 +122,7 @@ export default function Navbar() {
             </div>
             {/* app name */}
             <h1 className="text-xl sm:text-3xl font-bold bg-gradient-to-r from-purple-400 to-sky-400 bg-clip-text text-transparent">
-              AlphaChat
+              Omegachat
             </h1>
           </div>
           

@@ -16,7 +16,7 @@ export default function About() {
             </div>
             {/* app name with gradient */}
             <h1 className="text-5xl font-bold bg-gradient-to-r from-purple-400 to-sky-400 bg-clip-text text-transparent">
-              AlphaChat
+              Omegachat
             </h1>
           </div>
           {/* description text */}
@@ -28,14 +28,14 @@ export default function About() {
         {/* two column layout */}
         <div className="grid md:grid-cols-2 gap-12 mb-16">
           
-          {/* what is alphachat section */}
+          {/* what is Omegachat section */}
           <div className="bg-gray-800 rounded-lg p-8 border border-purple-500">
-            <h2 className="text-2xl font-bold text-purple-400 mb-4">What is AlphaChat?</h2>
+            <h2 className="text-2xl font-bold text-purple-400 mb-4">What is Omegachat?</h2>
             <p className="text-gray-300 leading-relaxed">
-              AlphaChat is a real-time messaging platform designed for instant communication. 
+              Omegachat is a real-time messaging platform designed for instant communication. 
               Built with modern web technologies, it provides a fast, secure, and user-friendly 
               chat experience. Whether you want to connect with friends, family, or colleagues, 
-              AlphaChat makes it simple and enjoyable.
+              Omegachat makes it simple and enjoyable.
             </p>
           </div>
 
@@ -130,7 +130,7 @@ export default function About() {
         <div className="text-center bg-gradient-to-r from-purple-900 to-sky-900 rounded-lg p-8 border border-purple-500">
           <h2 className="text-2xl font-bold text-white mb-4">Ready to Start Chatting?</h2>
           <p className="text-gray-300 mb-6">
-            Join AlphaChat today and connect with people instantly. It's free, fast, and easy to get started.
+            Join Omegachat today and connect with people instantly. It's free, fast, and easy to get started.
           </p>
           {/* action buttons */}
           <div className="flex justify-center gap-4">
