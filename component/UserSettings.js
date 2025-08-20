@@ -539,7 +539,7 @@ const UserSettings = () => {
               <div className="max-w-lg mx-auto">
                 <div className="text-center mb-6 sm:mb-8">
                   <h2 className="text-2xl sm:text-4xl font-bold text-red-400 mb-2">🗑️ Delete Account</h2>
-                  <p className="text-gray-400 text-sm sm:text-base">Permanently remove your account</p>
+                  <p className="text-gray-400 text-sm sm:text-base pl-2">Permanently remove your account</p>
                 </div>
                 
                 <div className="bg-red-900/30 border-2 border-red-500/50 p-4 sm:p-6 rounded-xl mb-6 sm:mb-8">
